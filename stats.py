@@ -16,3 +16,12 @@ def count_characters(booktext):
             else:
                 characters[c] = 1
     return characters
+
+def split_dictonary(dict_in):
+    list_out = []
+    for k in dict_in:
+        dict_out = {}
+        dict_out["char"] = k
+        dict_out["num"] = dict_in[k]
+        list_out.append(dict_out)
+    return(list_out)
