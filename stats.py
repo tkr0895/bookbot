@@ -25,3 +25,10 @@ def split_dictonary(dict_in):
         dict_out["num"] = dict_in[k]
         list_out.append(dict_out)
     return(list_out)
+
+def sort_list(lst):
+    lst.sort(reverse=True, key=sort_on)
+    return lst
+
+def sort_on(dict):
+    return dict["num"]
