@@ -24,6 +24,7 @@ def split_dictonary(dict_in):
         dict_out["char"] = k
         dict_out["num"] = dict_in[k]
         list_out.append(dict_out)
+    list_out = sort_list(list_out) 
     return(list_out)
 
 def sort_list(lst):
