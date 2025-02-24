@@ -1,6 +1,4 @@
-from stats import count_words
-from stats import count_characters
-from stats import split_dictonary
+from stats import count_words, count_characters, split_dictionary
 import sys
 
 def get_book_text(book):
@@ -8,15 +6,15 @@ def get_book_text(book):
         return f.read()
     
 def print_report(path, total_words, character_count):
-    print("============ BOOKBOT ============")
+    print(f"============ BOOKBOT ============")
     print(f"Analyzing book found at {path}...")
-    print("----------- Word Count ----------")
+    print(f"----------- Word Count ----------")
     print(f"Found {total_words} total words")
     print(f"--------- Character Count -------")
     for dict in character_count:
         if dict["char"].isalpha():
             print(f"{dict["char"]}: {dict["num"]}")
-    print("============= END ===============")
+    print(f"============= END ===============")
 
 def check_arguments(arguments):
     if len(arguments) < 2:
@@ -26,9 +24,10 @@ def check_arguments(arguments):
 def main():
     check_arguments(sys.argv)
     path = sys.argv[1]
-    word_count = count_words(get_book_text(path))
-    char_count = count_characters(get_book_text(path))
-    char_list = split_dictonary(char_count)
+    booktext = get_book_text(path)
+    word_count = count_words(booktext)
+    char_count = count_characters(booktext)
+    char_list = split_dictionary(char_count)
     print_report(path, word_count, char_list)
 
 main()

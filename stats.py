@@ -1,23 +1,20 @@
 def count_words(booktext):
     words = booktext.split()
-    word_count = 0
-    for word in words:
-        word_count += 1
-    return word_count
+    return len(words)
 
 def count_characters(booktext):
-    characters = {}
+    characters_dict = {}
     words = booktext.split()
     for word in words:
         for c in word:
             c = c.lower()
-            if c in characters:
-                characters[c] += 1
+            if c in characters_dict:
+                characters_dict[c] += 1
             else:
-                characters[c] = 1
-    return characters
+                characters_dict[c] = 1
+    return characters_dict
 
-def split_dictonary(dict_in):
+def split_dictionary(dict_in):
     list_out = []
     for k in dict_in:
         dict_out = {}
