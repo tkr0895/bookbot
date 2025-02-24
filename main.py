@@ -1,10 +1,13 @@
 from stats import count_words, count_characters, split_dictionary
 import sys
 
-def read_book_text(book):
+def read_book_text(path_to_book):
     check_arguments(sys.argv)
-    with open(book) as f:
-        return f.read()
+    try:
+        with open(path_to_book) as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f"Error: File not found at {path_to_book}")
     
 def print_report(path, total_words, character_count):
     print(f"============ BOOKBOT ============")
@@ -29,9 +32,9 @@ def get_word_count_and_char_list(booktext):
     return word_count, char_list
 
 def main():
-    path = sys.argv[1]
-    booktext = read_book_text(path)
+    path_to_book = sys.argv[1]
+    booktext = read_book_text(path_to_book)
     word_count, char_list = get_word_count_and_char_list(booktext)
-    print_report(path, word_count, char_list)
+    print_report(path_to_book, word_count, char_list)
 
 main()
