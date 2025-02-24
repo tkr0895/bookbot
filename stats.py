@@ -1,10 +1,9 @@
 def count_words(booktext):
     words = booktext.split()
-    return len(words)
+    return len(words), words
 
-def count_characters(booktext):
+def count_characters(words):
     characters_dict = {}
-    words = booktext.split()
     for word in words:
         for c in word:
             c = c.lower()
@@ -14,19 +13,6 @@ def count_characters(booktext):
                 characters_dict[c] = 1
     return characters_dict
 
-def split_dictionary(dict_in):
-    list_out = []
-    for k in dict_in:
-        dict_out = {}
-        dict_out["char"] = k
-        dict_out["num"] = dict_in[k]
-        list_out.append(dict_out)
-    list_out = sort_list(list_out) 
-    return(list_out)
-
-def sort_list(lst):
-    lst.sort(reverse=True, key=sort_on)
-    return lst
-
-def sort_on(dict):
-    return dict["num"]
+def split_and_sort_characters(char_dict):
+    char_list = [{"char": k, "num": v} for k, v in char_dict.items()]
+    return sorted(char_list, reverse=True, key=lambda x: x["num"])
