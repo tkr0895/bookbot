@@ -1,7 +1,8 @@
 from stats import count_words, count_characters, split_dictionary
 import sys
 
-def get_book_text(book):
+def read_book_text(book):
+    check_arguments(sys.argv)
     with open(book) as f:
         return f.read()
     
@@ -21,13 +22,16 @@ def check_arguments(arguments):
         print("Usage: python3 main.py <path_to_book>")
         sys.exit(1)
 
-def main():
-    check_arguments(sys.argv)
-    path = sys.argv[1]
-    booktext = get_book_text(path)
+def get_word_count_and_char_list(booktext):
     word_count = count_words(booktext)
     char_count = count_characters(booktext)
     char_list = split_dictionary(char_count)
+    return word_count, char_list
+
+def main():
+    path = sys.argv[1]
+    booktext = read_book_text(path)
+    word_count, char_list = get_word_count_and_char_list(booktext)
     print_report(path, word_count, char_list)
 
 main()
