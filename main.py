@@ -1,6 +1,7 @@
 from stats import count_words
 from stats import count_characters
 from stats import split_dictonary
+import sys
 
 def get_book_text(book):
     with open(book) as f:
@@ -17,8 +18,14 @@ def print_report(path, total_words, character_count):
             print(f"{dict["char"]}: {dict["num"]}")
     print("============= END ===============")
 
+def check_arguments(arguments):
+    if len(arguments) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
 def main():
-    path = "./books/frankenstein.txt"
+    check_arguments(sys.argv)
+    path = sys.argv[1]
     word_count = count_words(get_book_text(path))
     char_count = count_characters(get_book_text(path))
     char_list = split_dictonary(char_count)
